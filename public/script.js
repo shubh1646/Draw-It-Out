@@ -1,6 +1,91 @@
 let socket = io();
 
 
+
+
+$('#loginBox').show()
+$('#drawbox').hide()
+
+
+$('#btnStart').click(() => {
+    if ($('#inpUsername').val() == "" || ($('#inpPassword').val() == "")) {
+        alert('Please complete the Username / Passowrd field');
+    }
+    else {
+        socket.emit('login', {
+            username: $('#inpUsername').val(),
+            password: $('#inpPassword').val()
+        })
+    }
+
+})
+
+
+$("#inpNewMsg").keypress(function (e) {
+    if (e.keyCode == 13) {
+        $('#btnSendMsg').click();
+    }
+});
+
+
+socket.on('logged_in', () => {
+
+    $('#loginBox').hide()
+    $('#drawbox').show()
+
+    s.emit('logged_in')
+
+
+
+})
+socket.on('show_in', (data) => {
+
+
+    $('#ullogins').append($('<li>').text(
+        `${data} Logged In `))
+
+
+})
+socket.on('login_failed', () => {
+    window.alert("username or Passord wrong!");
+})
+
+socket.on('user_disconnected', function (data) {
+    $('#ullogins').append($('<li>').text(
+        `${data} Logged Off `))
+});
+
+
+
+$('#btnSendMsg').click(() => {
+
+    socket.emit('msg_send', {
+        msg: $('#inpNewMsg').val()
+    })
+    $('#inpNewMsg').val("")
+
+})
+
+socket.on('msg_rcvd', (data) => {
+    console.log(`${data.from}`)
+    $('#ulMsgs').append($('<li>').text(
+        `[${data.from}]: ${data.msg}`))
+})
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 var penColor = "black"
 var brushSize = 9;
 
@@ -29,7 +114,7 @@ let bSize = document.getElementById('brushSize');
 
 bSize.onchange = function () {
 
-    socket.emit('size_changed',bSize.value);
+    socket.emit('size_changed', bSize.value);
     brushSize = bSize.value;
 }
 
@@ -131,7 +216,7 @@ window.addEventListener('load', () => {
     })
 
 
-    socket.on('size_changed',(data)=>{
+    socket.on('size_changed', (data) => {
         brushSize = data;
     })
 })

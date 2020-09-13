@@ -7,8 +7,8 @@
     <title>Canvas</title>
     <script src="/socket.io/socket.io.js"></script>
     <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"
-    integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj"
-    crossorigin="anonymous"></script>
+        integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj"
+        crossorigin="anonymous"></script>
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css"
         integrity="sha384-JcKb8q3iqJ61gNV9KGb8thSsNjpSL0n8PARn9HuZOnIxN0hoP+VmmDGMN5t9UJ0Z" crossorigin="anonymous">
     <script defer src="script.js"></script>
@@ -16,41 +16,62 @@
 </head>
 
 <body>
-
-    <div class="row p-1 m-3">
-        <div class="col-7" id="box">
-            <canvas id="canvas" ></canvas>
-        </div>
-        <div class = "col">
-            chat
-        </div>
+    <div id='loginBox'>
+        <input id="inpUsername" placeholder="Name" >
 
 
+
+        <input id="inpPassword" placeholder="Password" type="password" required>
+        <button id="btnStart">START</button>
     </div>
-    <div class="row p-1 m-3">
-        <div class="col">
-            <div style="border-radius: 50%; width:30px;height:30px;background:green;" id="greenCol"></div>
-        </div>
-        <div class="col">
-            <div style="border-radius: 50%; width:30px;height:30px;background:blue;" id='blueCol'></div>
-        </div>
-        <div class="col">
-            <div style="border-radius: 50%; width:30px;height:30px;background:black;" id="blackCol"></div>
-        </div>
-        <div class="col">
-            <div style="border-radius: 50%; width:30px;height:30px;background:red;" id="redCol"></div>
-        </div>
-        <div class="col">
-            <div style="border-radius: 50%; width:30px;height:30px;" id="eraser">Eraser</div>
-        </div>
-        <div class="col">
-            <div class="slidecontainer">
-                Size
-                <input type="range" min="5" max="30" value="10" class="slider" id="brushSize">
+    <div id="drawbox">
+        <div class="row p-1 m-3">
+            <div class="col-7" id="box">
+                <canvas id="canvas"></canvas>
+            </div>
+            <div class="col">
+
+
+                <div id="chatBox">
+
+                   
+                    <input id="inpNewMsg">
+                    <button id="btnSendMsg">SEND</button>
+                    <ul id="ulMsgs" ></ul>
+
+                    <div style="display: flex; justify-content: flex-end ;margin-right: 100px;">
+                        <ul id="ullogins" >
+                            <li>Online</li>
+                        </ul>
+                    </div>
+                </div>
+
+            </div>
+            <div class="row p-1 m-3">
+                <div class="col">
+                    <div style="border-radius: 50%; width:30px;height:30px;background:green;" id="greenCol"></div>
+                </div>
+                <div class="col">
+                    <div style="border-radius: 50%; width:30px;height:30px;background:blue;" id='blueCol'></div>
+                </div>
+                <div class="col">
+                    <div style="border-radius: 50%; width:30px;height:30px;background:black;" id="blackCol"></div>
+                </div>
+                <div class="col">
+                    <div style="border-radius: 50%; width:30px;height:30px;background:red;" id="redCol"></div>
+                </div>
+                <div class="col">
+                    <div style="border-radius: 50%; width:30px;height:30px;" id="eraser">Eraser</div>
+                </div>
+                <div class="col">
+                    <div class="slidecontainer">
+                        Size
+                        <input type="range" min="5" max="30" value="10" class="slider" id="brushSize">
+                    </div>
+                </div>
+
             </div>
         </div>
-
-    </div>
 
 </body>
 
