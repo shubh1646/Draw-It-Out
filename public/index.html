@@ -17,12 +17,12 @@
 
 <body>
     <div id='loginBox'>
-        <input id="inpUsername" placeholder="Name" >
+        <input id="inpUsername"class="form-control col-4 m-4  "  placeholder="Name">
 
 
 
-        <input id="inpPassword" placeholder="Password" type="password" required>
-        <button id="btnStart">START</button>
+        <input id="inpPassword" placeholder="Password" class="form-control m-4 col-4   " type="password" required>
+        <button id="btnStart" class="btn btn-primary mb-2 offset-md-2">Lets Draw</button>
     </div>
     <div id="drawbox">
         <div class="row p-1 m-3">
@@ -30,17 +30,14 @@
                 <canvas id="canvas"></canvas>
             </div>
             <div class="col">
-
-
-                <div id="chatBox">
-
-                   
-                    <input id="inpNewMsg">
-                    <button id="btnSendMsg">SEND</button>
-                    <ul id="ulMsgs" ></ul>
-
-                    <div style="display: flex; justify-content: flex-end ;margin-right: 100px;">
-                        <ul id="ullogins" >
+                <div id="chatBox" class="d-flex">
+                    <div class="p-2">
+                    <input  id="inpNewMsg" class="form-control">
+                    <button id="btnSendMsg" class="btn btn-info m-2">SEND</button>
+                    <ul id="ulMsgs" class="list-group list-group-flush"></ul>
+                </div>
+                    <div class="ml-auto p-2">
+                        <ul id="ullogins" class="list-group list-group-flush">
                             <li>Online</li>
                         </ul>
                     </div>
