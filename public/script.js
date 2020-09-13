@@ -28,42 +28,40 @@ let bSize = document.getElementById('brushSize');
 
 
 bSize.onchange = function () {
-    console.log(bSize.value);
+
+    socket.emit('size_changed',bSize.value);
     brushSize = bSize.value;
 }
 
 greenCol.onclick = function () {
-    socket.emit('color_change','green');
+    socket.emit('color_change', 'green');
     penColor = "green"
 }
 
 blueCol.onclick = function () {
-    socket.emit('color_change','blue');
+    socket.emit('color_change', 'blue');
     penColor = "blue"
 }
 
 
 blackCol.onclick = function () {
-    socket.emit('color_change','black');
+    socket.emit('color_change', 'black');
     penColor = "black"
 }
 
 
 redCol.onclick = function () {
-    socket.emit('color_change','red');
+    socket.emit('color_change', 'red');
     penColor = "red"
 }
 
 
 eraser.onclick = function () {
-    socket.emit('color_change','white');
+    socket.emit('color_change', 'white');
     penColor = "white"
 }
 
 
-// function elementScale(el) {
-//     return el.offsetWidth === 0 ? 0 : (el.width / el.offsetWidth);
-// }
 
 
 window.addEventListener('load', () => {
@@ -107,8 +105,8 @@ window.addEventListener('load', () => {
             e_y: e.clientY,
             color: penColor
         })
-//var scale = elementScale(canvas);
-        drawLine(ctx, e.clientX-canvas.offsetLeft, e.clientY-canvas.offsetTop, e.clientX-canvas.offsetLeft, e.clientY-canvas.offsetTop);
+        //var scale = elementScale(canvas);
+        drawLine(ctx, e.clientX - canvas.offsetLeft, e.clientY - canvas.offsetTop, e.clientX - canvas.offsetLeft, e.clientY - canvas.offsetTop);
     }
 
     canvas.addEventListener('mousedown', startPosition);
@@ -118,7 +116,7 @@ window.addEventListener('load', () => {
 
 
     socket.on('lets_draw', (data) => {
-        drawLine(ctx, data.s_x-canvas.offsetLeft, data.s_y-canvas.offsetTop, data.e_x-canvas.offsetLeft, data.e_y-canvas.offsetTop);
+        drawLine(ctx, data.s_x - canvas.offsetLeft, data.s_y - canvas.offsetTop, data.e_x - canvas.offsetLeft, data.e_y - canvas.offsetTop);
     })
 
 
@@ -127,9 +125,14 @@ window.addEventListener('load', () => {
     })
 
 
-    socket.on('color_cchange',(data)=>{
+    socket.on('color_cchange', (data) => {
         console.log("socket color is called")
         penColor = data;
+    })
+
+
+    socket.on('size_changed',(data)=>{
+        brushSize = data;
     })
 })
 

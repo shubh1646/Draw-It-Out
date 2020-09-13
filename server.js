@@ -13,22 +13,25 @@ io.on('connection', (socket) => {
 
 
     socket.on("draw", (data) => {
-      //  console.log("inside the server draw ",data)
+        //  console.log("inside the server draw ",data)
         socket.broadcast.emit('lets_draw', data);
     })
 
 
 
-    socket.on('done',()=>{
+    socket.on('done', () => {
         socket.broadcast.emit('done')
     })
 
-    socket.on('color_change',(data)=>{
-        console.log("color is changes",data)
-        socket.broadcast.emit('color_cchange',data)
+    socket.on('color_change', (data) => {
+        console.log("color is changes", data)
+        socket.broadcast.emit('color_cchange', data)
     })
 
-
+     socket.on('size_changed',(data)=>{
+         console.log("brush size is changed")
+         socket.broadcast.emit('size_changed',data)
+     })
 })
 
 
